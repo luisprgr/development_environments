@@ -52,3 +52,17 @@ toolbox create --image devops-image DevOps
 ```bash
 toolbox enter DevOps
 ```
+
+### Remote build
+
+#### Create a Toolbox by downloading the image from GitHub's Container Registry
+
+```bash
+toolbox create --image ghcr.io/luisprgr/development_environments:devops DevOps
+```
+
+#### Enter the Toolbox
+
+```bash
+toolbox enter DevOps
+```
