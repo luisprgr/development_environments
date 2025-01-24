@@ -29,7 +29,7 @@ The goal of this repository is to:
 
 ### Local Build
 
-### Change directory to one of the environment folders
+#### Change directory to one of the environment folders
 
 ```bash
 cd devops
