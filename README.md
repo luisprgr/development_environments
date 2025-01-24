@@ -29,6 +29,12 @@ The goal of this repository is to:
 
 ### Local Build
 
+### Change directory to one of the environment folders
+
+```bash
+cd devops
+```
+
 #### Create an image that can be used in Toolbox using the Dockerfile
 
 ```bash
