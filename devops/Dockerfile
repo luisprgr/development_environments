@@ -39,5 +39,5 @@ RUN rm /external_apps/tenv.deb
 
 # Install Terraform (via Tenv)
 
-ENV TFENV_TERRAFORM_VERSION=1.5.6
+ENV TFENV_TERRAFORM_VERSION=1.10.5
 RUN tenv terraform install $TFENV_TERRAFORM_VERSION
