@@ -1,0 +1,50 @@
+name: Build containers and publish to Github Container Registry
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  Build_and_Publish:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        tag: [devops]
+    permissions:
+      contents: read
+      packages: write
+    env:
+      REGISTRY: ghcr.io
+      IMAGE_NAME: development_environments
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Check changes in folder
+        id: changes_in_folder
+        run: |
+          echo "changes=$(git diff --name-only HEAD HEAD~1 \
+          | grep -q "${{ matrix.tag }}" \
+          && echo "true" \
+          || echo "false")" \
+          >> $GITHUB_OUTPUT
+
+      # Check if https://github.com/super-linter/super-linter should be implemented
+
+      - name: Login to GitHub Container Registry
+        if: steps.changes_in_folder.outputs.changes == 'true'
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Build and push
+        if: steps.changes_in_folder.outputs.changes == 'true'
+        uses: docker/build-push-action@v5
+        with:
+          context: ${{ matrix.tag }}/
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ github.repository }}:${{ matrix.tag }}
