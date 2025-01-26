@@ -2,8 +2,8 @@
 
 This repository contains my containerized development environments, which can run in:
 
-- [x] Toolbox  
-- [x] Distrobox (Theoretically compatible, but not yet tested)  
+- [x] [Toolbox](https://containertoolbx.org/)
+- [x] [Distrobox](https://distrobox.it/) (Theoretically compatible, but not yet tested)  
 
 The goal of this repository is to:
 
